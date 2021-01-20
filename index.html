@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(250, 210, 218);
+
+        }
+
+        .main {
+            width: 100%;
+            height: 100vh;
+            background-image: url(1.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-size: 300px;
+            margin-top: 50px;
+
+        }
+
+        .box {
+            width: 150px;
+            height: 100px;
+            background-color: crimson;
+            margin-top: 20px;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        .box:first-child {
+            background-color: darkorange;
+        }
+
+        .box:last-child {
+            background-color: slateblue;
+        }
+
+        /* .text{
+        font-size: 150px;
+        font-weight: bold;
+        background: transparent; 
+        position: absolute;
+        top: 100px;
+        left: 200px;
+        color: #000;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-width: 2px;
+        
+    }
+     */
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+    <!-- 
+    <div class="text">First Step</div> -->
+
+
+    <script>
+        window.onload = function () {
+            let oBox = document.getElementsByClassName('box');
+
+            for (var i = 0; i < oBox.length; i++) {
+                oBox[i].timer = null;
+
+                oBox[i].onmouseover = function () {
+                    move(this, 500);
+                }
+                oBox[i].onmouseout = function () {
+                    move(this, 100);
+                }
+            }
+        }
+        //let timer = null; 本來的timer設定
+
+        function move(aElm, goPoint) {
+            clearInterval(aElm.timer);
+
+            aElm.timer = setInterval(function () {
+                let speed = (goPoint - aElm.offsetWidth) / 10;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if (aElm.offsetWidth == goPoint) {
+                    clearInterval(aElm.timer);
+                } else {
+                    aElm.style.width = aElm.offsetWidth + speed + 'px';
+                }
+
+            }, 30);
+
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
